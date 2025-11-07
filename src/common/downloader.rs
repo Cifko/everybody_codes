@@ -54,7 +54,6 @@ fn get_notes(seed: u64, event_or_story: usize, quest: usize) -> Result<Notes, Do
         "https://everybody-codes.b-cdn.net/assets/{event_or_story}/{quest}/input/{seed}.json"
     );
     let client = reqwest::blocking::get(&url);
-    println!("{:?}", client);
     Ok(client?.json::<Notes>()?)
 }
 
