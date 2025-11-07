@@ -1,7 +1,4 @@
-use crate::{
-    common::{downloader::download_notes, math::lcm},
-    println_part, println_quest,
-};
+use crate::common::{downloader::download_notes, math::lcm};
 
 fn part1() -> anyhow::Result<()> {
     let input = download_notes(1, 3, 1)?;
@@ -26,7 +23,7 @@ fn part1() -> anyhow::Result<()> {
             }
         }
     }
-    println_part!(1, "{}", res);
+    println!("{}", res);
     Ok(())
 }
 
@@ -52,7 +49,7 @@ fn part2() -> anyhow::Result<()> {
             }
         }
     }
-    println_part!(2, "{}", delta);
+    println!("{}", delta);
     Ok(())
 }
 
@@ -78,14 +75,15 @@ fn part3() -> anyhow::Result<()> {
             }
         }
     }
-    println_part!(3, "{}", delta);
+    println!("{}", delta);
     Ok(())
 }
 
-pub fn run() -> anyhow::Result<()> {
-    println_quest!(3);
-    part1()?;
-    part2()?;
-    part3()?;
-    Ok(())
+pub fn run(part: usize) -> anyhow::Result<()> {
+    match part {
+        1 => part1(),
+        2 => part2(),
+        3 => part3(),
+        _ => anyhow::bail!("Unknown part {}", part),
+    }
 }

@@ -1,4 +1,4 @@
-use crate::{common::downloader::download_notes, println_part, println_quest};
+use crate::common::downloader::download_notes;
 
 fn potion(c: char) -> u64 {
     match c {
@@ -13,7 +13,7 @@ fn potion(c: char) -> u64 {
 fn part1() -> anyhow::Result<()> {
     let notes = download_notes(2024, 1, 1)?;
     let sum: u64 = notes.chars().fold(0, |acc, x| acc + potion(x));
-    println_part!(1, "{}", sum);
+    println!("{}", sum);
     Ok(())
 }
 
@@ -26,7 +26,7 @@ fn part2() -> anyhow::Result<()> {
         .fold(0, |acc, pair| {
             acc + potion(pair[0]) + potion(pair[1]) + if pair.contains(&'x') { 0 } else { 2 }
         });
-    println_part!(2, "{}", sum);
+    println!("{}", sum);
     Ok(())
 }
 
@@ -51,14 +51,16 @@ fn part3() -> anyhow::Result<()> {
                 })
         })
         .sum();
-    println_part!(3, "{}", sum);
+    println!("{}", sum);
     Ok(())
 }
 
-pub fn run() -> anyhow::Result<()> {
-    println_quest!(1);
-    part1()?;
-    part2()?;
-    part3()?;
+pub fn run(part: usize) -> anyhow::Result<()> {
+    match part {
+        1 => part1()?,
+        2 => part2()?,
+        3 => part3()?,
+        _ => println!("Unknown part {}", part),
+    }
     Ok(())
 }

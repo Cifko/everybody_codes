@@ -7,6 +7,7 @@ edition = "2024"
 aes = "0.8.4"
 anyhow = "1.0.100"
 cbc = "0.1.2"
+clap = { version = "4.5.51", features = ["derive"] }
 dotenv = "0.15.0"
 fancy-regex = "0.16.2"
 hex = "0.4.3"

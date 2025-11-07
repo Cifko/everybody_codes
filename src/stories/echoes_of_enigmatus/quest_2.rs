@@ -1,14 +1,7 @@
 use std::{cell::RefCell, rc::Rc};
 
-use crate::{
-    common::{binary_tree::BinaryTree, downloader::download_notes},
-    println_part, println_quest,
-};
+use crate::common::{binary_tree::BinaryTree, downloader::download_notes};
 use regex::Regex;
-
-fn is_left(a: &(i32, char), b: &(i32, char)) -> bool {
-    a.0 < b.0
-}
 
 #[derive(PartialEq, PartialOrd, Debug)]
 struct Node {
@@ -85,7 +78,7 @@ fn part1() -> anyhow::Result<()> {
     let left_rows = binding.iter().max_by_key(|r| r.len()).unwrap();
     let binding = rows(right.unwrap());
     let right_rows = binding.iter().max_by_key(|r| r.len()).unwrap();
-    println_part!(1, "{}{}", left_rows, right_rows);
+    println!("{}{}", left_rows, right_rows);
     Ok(())
 }
 
@@ -172,7 +165,7 @@ fn part2() -> anyhow::Result<()> {
     let left_rows = binding.iter().max_by_key(|r| r.len()).unwrap();
     let binding = rows(right.unwrap());
     let right_rows = binding.iter().max_by_key(|r| r.len()).unwrap();
-    println_part!(2, "{}{}", left_rows, right_rows);
+    println!("{}{}", left_rows, right_rows);
     Ok(())
 }
 
@@ -258,14 +251,15 @@ fn part3() -> anyhow::Result<()> {
     let left_rows = binding.iter().rev().max_by_key(|r| r.len()).unwrap();
     let binding = rows(right.unwrap());
     let right_rows = binding.iter().rev().max_by_key(|r| r.len()).unwrap();
-    println_part!(3, "{}{}", left_rows, right_rows);
+    println!("{}{}", left_rows, right_rows);
     Ok(())
 }
 
-pub fn run() -> anyhow::Result<()> {
-    println_quest!(2);
-    part1()?;
-    part2()?;
-    part3()?;
-    Ok(())
+pub fn run(part: usize) -> anyhow::Result<()> {
+    match part {
+        1 => part1(),
+        2 => part2(),
+        3 => part3(),
+        _ => anyhow::bail!("Unknown part {}", part),
+    }
 }

@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-use crate::{common::downloader::download_notes, println_part, println_quest};
+use crate::common::downloader::download_notes;
 
 fn eni1(n: u64, e: u64, m: u64) -> u64 {
     let mut r = 1;
@@ -44,7 +44,7 @@ fn part1() -> anyhow::Result<()> {
             max_res = res;
         }
     }
-    println_part!(1, "{}", max_res);
+    println!("{}", max_res);
     Ok(())
 }
 
@@ -105,7 +105,7 @@ fn part2() -> anyhow::Result<()> {
             max_res = res;
         }
     }
-    println_part!(2, "{}", max_res);
+    println!("{}", max_res);
     Ok(())
 }
 
@@ -166,14 +166,15 @@ fn part3() -> anyhow::Result<()> {
             max_res = res;
         }
     }
-    println_part!(3, "{}", max_res);
+    println!("{}", max_res);
     Ok(())
 }
 
-pub fn run() -> anyhow::Result<()> {
-    println_quest!(1);
-    part1()?;
-    part2()?;
-    part3()?;
-    Ok(())
+pub fn run(part: usize) -> anyhow::Result<()> {
+    match part {
+        1 => part1(),
+        2 => part2(),
+        3 => part3(),
+        _ => anyhow::bail!("Unknown part {}", part),
+    }
 }

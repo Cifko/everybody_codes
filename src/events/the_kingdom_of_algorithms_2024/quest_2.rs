@@ -2,7 +2,7 @@ use std::collections::HashSet;
 
 use fancy_regex::Regex;
 
-use crate::{common::downloader::download_notes, println_part, println_quest};
+use crate::common::downloader::download_notes;
 
 fn part1() -> anyhow::Result<()> {
     let notes = download_notes(2024, 2, 1)?;
@@ -17,7 +17,7 @@ fn part1() -> anyhow::Result<()> {
     for word in words {
         total += regex::Regex::new(word).unwrap().find_iter(text).count();
     }
-    println_part!(1, "{}", total);
+    println!("{}", total);
     Ok(())
 }
 
@@ -44,20 +44,22 @@ fn part2() -> anyhow::Result<()> {
             }
         }
     }
-    println_part!(2, "{}", runic_letters.len());
+    println!("{}", runic_letters.len());
     Ok(())
 }
 
 fn part3() -> anyhow::Result<()> {
     let notes = download_notes(2024, 2, 3)?;
-    println_part!(3, "{}", 0);
+    println!("{}", 0);
     Ok(())
 }
 
-pub fn run() -> anyhow::Result<()> {
-    println_quest!(2);
-    part1()?;
-    part2()?;
-    part3()?;
+pub fn run(part: usize) -> anyhow::Result<()> {
+    match part {
+        1 => part1()?,
+        2 => part2()?,
+        3 => part3()?,
+        _ => println!("Unknown part {}", part),
+    }
     Ok(())
 }
