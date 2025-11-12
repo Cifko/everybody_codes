@@ -1,5 +1,3 @@
-use std::collections::{HashMap, HashSet};
-
 use crate::common::downloader::download_notes;
 
 fn part1() -> anyhow::Result<()> {
