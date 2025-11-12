@@ -1,6 +1,6 @@
 use crate::{
     events::{the_kingdom_of_algorithms_2024, the_song_of_ducks_and_dragons_2025},
-    stories::echoes_of_enigmatus,
+    stories::{echoes_of_enigmatus, the_entertainment_hub},
 };
 
 mod common;
@@ -25,6 +25,7 @@ fn main() -> anyhow::Result<()> {
     let start_time = std::time::Instant::now();
     let res = match args.event {
         1 => echoes_of_enigmatus::run(args.quest, args.part),
+        2 => the_entertainment_hub::run(args.quest, args.part),
         2024 => the_kingdom_of_algorithms_2024::run(args.quest, args.part),
         2025 => the_song_of_ducks_and_dragons_2025::run(args.quest, args.part),
         _ => anyhow::bail!("Unknown event {}", args.event),

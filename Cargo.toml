@@ -11,6 +11,7 @@ clap = { version = "4.5.51", features = ["derive"] }
 dotenv = "0.15.0"
 fancy-regex = "0.16.2"
 hex = "0.4.3"
+itertools = "0.14.0"
 num-traits = "0.2.19"
 regex = "1.11.3"
 reqwest = { version = "0.12.23", features = ["blocking", "json"] }
